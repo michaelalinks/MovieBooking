@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj": {}
+    "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\WebApi\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj": {}
   },
   "projects": {
-    "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj": {
+    "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\WebApi\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj",
+        "projectUniqueName": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\WebApi\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj",
         "projectName": "TodoItems",
-        "projectPath": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj",
+        "projectPath": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\WebApi\\tutorial\\TodoItems\\TodoItems\\TodoItems.csproj",
         "packagesPath": "C:\\Users\\michaela.links\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\tutorial\\TodoItems\\TodoItems\\obj\\",
+        "outputPath": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\C#\\WebApi\\tutorial\\TodoItems\\TodoItems\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\michaela.links\\AppData\\Roaming\\NuGet\\NuGet.Config",
