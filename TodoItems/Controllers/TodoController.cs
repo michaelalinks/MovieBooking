@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using TodoItems.Models;
+
 using TodoItems.Services;
 
 namespace TodoItems.Controllers

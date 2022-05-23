@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using TodoItems.Controllers;
 using TodoItems.Data;
 using TodoItems.Data.Repositories;
-using TodoItems.Models;
+
 using TodoItems.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

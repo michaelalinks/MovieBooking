@@ -1,5 +1,6 @@
-﻿using TodoItems.Data.Repositories;
-using TodoItems.Models;
+﻿using TodoItems.Controllers;
+using TodoItems.Data.Repositories;
+
 
 namespace TodoItems.Services
 {

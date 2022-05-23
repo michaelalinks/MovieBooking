@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TodoItems.Models
+namespace TodoItems.Controllers
 {
     public class TodoItem
     {
@@ -15,4 +15,5 @@ namespace TodoItems.Models
         [Required(ErrorMessage = "Status is required")]
         public string? Status { get; set; }
     }
+
 }
