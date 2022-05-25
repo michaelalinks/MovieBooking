@@ -301,3 +301,4 @@ C:\Users\michaela.links\OneDrive\VelocITy Programme\WebApp\WebApi\tutorial\TodoI
 C:\Users\michaela.links\OneDrive\VelocITy Programme\WebApp\WebApi\tutorial\TodoItems\TodoItems\obj\Debug\net6.0\TodoItems.pdb
 C:\Users\michaela.links\OneDrive\VelocITy Programme\WebApp\WebApi\tutorial\TodoItems\TodoItems\obj\Debug\net6.0\TodoItems.genruntimeconfig.cache
 C:\Users\michaela.links\OneDrive\VelocITy Programme\WebApp\WebApi\tutorial\TodoItems\TodoItems\obj\Debug\net6.0\ref\TodoItems.dll
+C:\Users\michaela.links\OneDrive\VelocITy Programme\WebApp\WebApi\tutorial\TodoItems\TodoItems\bin\Debug\net6.0\TodoItems.staticwebassets.runtime.json
