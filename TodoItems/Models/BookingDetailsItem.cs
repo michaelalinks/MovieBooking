@@ -15,5 +15,6 @@ public class BookingDetailsItem
     public string? MovieItemID { get; set; } //foreign key
     public string? no_tickets { get; set; }
 
-    
+    public MovieItem MovieItem { get; set; }
+    public TicketAvailabilityItem TicketAvailabilityItem { get; set; }  
 }

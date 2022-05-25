@@ -1,6 +1,6 @@
 ﻿//public static class DbInitializer
 //    {
-//        public static void Initialize(BookingContext context)
+//        public static void Initialize(TodoContext context)
 //        {
 //            context.Database.EnsureCreated();
 
@@ -20,6 +20,23 @@
 //                context.MovieItems.Add(m);
 //            }
 //            context.SaveChanges();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //            //var courses = new Course[]
 //            //{
