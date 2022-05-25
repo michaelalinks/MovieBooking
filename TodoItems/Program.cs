@@ -14,6 +14,8 @@ builder.Services.AddDbContext<TodoContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ICrudRepository<TodoItem, int>, TodoRepository>();
 builder.Services.AddScoped<ICrudService<TodoItem, int>, TodoService>();
+builder.Services.AddScoped<ICrudRepository<BookingDetailsItem, int>, BookingDetailsRepository>();
+builder.Services.AddScoped<ICrudService<BookingDetailsItem, int>, BookingDetailsService>();
 
 builder.Services.AddCors(options =>
 {
