@@ -1,5 +1,5 @@
 # Movie Booking Web App
-I focused more on the Azure side of things before we got the second instructor in so my web app is a bit less developed. The SQL script is quite long but I just used it to map out my tables and queries before I did it in my web app. 
+I focused more on the Azure side of things before we got the second instructor in so my web app is a bit less developed. The SQL script is quite long but I just used it to map out my tables and queries before I did it in my web app. Copy the path of index.html in the wwwroot folder into the browser search bar to test the frontend.
 
 ## Completed:
 - Added 3 tables to DB
