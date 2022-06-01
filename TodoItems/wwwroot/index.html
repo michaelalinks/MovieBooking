@@ -37,9 +37,11 @@
                 <input type="text" id="newLastName" placeholder="Surname...">
                 <label for="movie">Movie</label>
                 <select id="movie-dropdown" name="movie" onmouseup="populateDropdown(id)">
+                    <option value="" disabled selected>Select Option</option>
                 </select>
                 <label for="date">Date</label>
                 <select id="dates-dropdown" name="dates" onmouseup="populateDropdown(id)">
+                    <option value="" disabled selected>Select Option</option>s
                 </select>
                 <label for="ticket">Tickets</label>
                 <input type="text" id="noTickets" placeholder="How many...">
@@ -71,6 +73,8 @@
                 // Get the value from the Input field in the FORM
                 let fnameValue = document.getElementById("newFirstName").value.trim();
                 let lnameValue = document.getElementById("newLastName").value.trim();
+                let movieID = document.getElementById("movie-dropdown").value.trim();
+                let taItemId = document.getElementById("dates-dropdown").value.trim();
                 let ticketNoValue = document.getElementById("noTickets").value.trim();
 
                 // Check that a value have added
@@ -80,12 +84,20 @@
                 if (lnameValue === "") {
                     alert("Please enter your last name");
                 }
+                if (movieID === "") {
+                    alert("Please select a movie");
+                }
+                if (taItemId === "") {
+                    alert("Please select a date");
+                }
                 if (ticketNoValue === "") {
                     alert("Please enter how many tickets you'd like");
                 }
-                createBookingItem(fnameValue, lnameValue, ticketNoValue);
+                createBookingItem(fnameValue, lnameValue, movieID, taItemId, ticketNoValue);
                 document.getElementById("newFirstName").value = "";
                 document.getElementById("newLastName").value = "";
+                document.getElementById("movie-dropdown").value = "";
+                document.getElementById("dates-dropdown").value = "";
                 document.getElementById("noTickets").value = "";
             }
 
@@ -99,40 +111,40 @@
              * 2) if successful then add the item to the list
              *
              ****************************************************************************/
-            function addBookingItemToDisplay(item) {
-                let bookingItemNode = document.createElement("li");
-                let fnameTextNode = document.createTextNode(item["fname"]);
-                bookingItemNode.appendChild(fnameTextNode);
+            //function addBookingItemToDisplay(item) {                                     /*This one causes the undefined*/
+            //    let bookingItemNode = document.createElement("li");
+            //    let fnameTextNode = document.createTextNode(item["fname"]);
+            //    bookingItemNode.appendChild(fnameTextNode);
 
-                document.getElementById("bookingList").appendChild(bookingItemNode);
+            //    document.getElementById("bookingList").appendChild(bookingItemNode);
 
-                let tickSpanNode = document.createElement("SPAN");
-                let tickText = document.createTextNode("\u2713");  // \u2713 is unicode for the tick symbol
-                tickSpanNode.appendChild(tickText);
-                bookingItemNode.appendChild(tickSpanNode);
-                tickSpanNode.className = "tickHidden";
+            //    let tickSpanNode = document.createElement("SPAN");
+            //    let tickText = document.createTextNode("\u2713");  // \u2713 is unicode for the tick symbol
+            //    tickSpanNode.appendChild(tickText);
+            //    bookingItemNode.appendChild(tickSpanNode);
+            //    tickSpanNode.className = "tickHidden";
 
-                let closeSpanNode = document.createElement("SPAN");
-                let closeText = document.createTextNode("X");
-                closeSpanNode.className = "close";
-                closeSpanNode.appendChild(closeText);
-                bookingItemNode.appendChild(closeSpanNode);
+            //    let closeSpanNode = document.createElement("SPAN");
+            //    let closeText = document.createTextNode("X");
+            //    closeSpanNode.className = "close";
+            //    closeSpanNode.appendChild(closeText);
+            //    bookingItemNode.appendChild(closeSpanNode);
 
-                closeSpanNode.onclick = function (event) {
-                    // When the use press the "X" button, the click event is normally also passed to its parent element.
-                    // (i.e. the element containing the <SPAN>). In the case the LI element that is holding the TodoItem
-                    // which would have resulted in a toggle of item between "DONE" and "NEW"
-                    //
-                    // stopPropagation() tells the event not to propagate
-                    event.stopPropagation();
+            //    closeSpanNode.onclick = function (event) {
+            //        // When the use press the "X" button, the click event is normally also passed to its parent element.
+            //        // (i.e. the element containing the <SPAN>). In the case the LI element that is holding the TodoItem
+            //        // which would have resulted in a toggle of item between "DONE" and "NEW"
+            //        //
+            //        // stopPropagation() tells the event not to propagate
+            //        event.stopPropagation();
 
-                    if (confirm("Are you sure that you want to delete " + item.fname + "?")) {
-                        deleteBookingItem(item["id"]);
+            //        if (confirm("Are you sure that you want to delete " + item.fname + "?")) {
+            //            deleteBookingItem(item["id"]);
 
-                        // Remove the HTML list element that is holding this todo item
-                        bookingItemNode.remove();
-                    }
-                }
+            //            // Remove the HTML list element that is holding this todo item
+            //            bookingItemNode.remove();
+            //        }
+            //    }
 
                 //bookingItemNode.onclick = function () {
                 //    if (item["status"] === "NEW") {
@@ -157,13 +169,13 @@
              * CRUD functions calling the REST API
              ****************************************************************************/
 
-            function createBookingItem(bookingItemDescription, bookingItemLName, bookingItemTickets) {
+            function createBookingItem(bookingItemDescription, bookingItemLName, bookingItemMovie, bookingItemDate, bookingItemTickets) {
 
                 // Create a new JSON object for the new item with the status of NEW
                 // Since the id is generated by the microservice, we will use -1 as a dummy
                 // If the POST is successful the microservice will store the new item in the database
                 // and returns a JSON via the response with the generated id for the new item
-                const newItem = { "fname": bookingItemDescription, "lname": bookingItemLName, "no_tickets": bookingItemTickets };
+                const newItem = { "fname": bookingItemDescription, "lname": bookingItemLName, "movietiemid": bookingItemMovie, "icketavailabilityid": bookingItemDate ,"no_tickets": bookingItemTickets };
                 const requestOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -179,7 +191,7 @@
                     })
 
                     // add the item to the UL element so that it will appear in the browser
-                    .then(item => addBookingItemToDisplay(item));
+                    /*.then(item => addBookingItemToDisplay(item));*/
             }
 
             // Load the list - expecting an array of todo_items to be returned
@@ -219,34 +231,6 @@
                     })
             }
 
-
-
-            function populateDropdown() {
-
-                // using jQuery
-
-                let dropdown = $('#movie-dropdown');
-
-                dropdown.empty();
-
-                dropdown.append('<option selected="true" disabled>Choose Movie</option>');
-                dropdown.prop('selectedIndex', 0);
-
-                const url = 'http://localhost:5066/movie';
-
-                // Populate dropdown with list of movies
-                $.getJSON(url, function (data) {
-                    $.each(data, function (key, entry) {
-                        dropdown.append($('<option></option>').attr('value', entry.id).text(entry.movieTitle));
-                    })
-                });
-
-            }
-
-
-
-
-
             function readMovieItems() {
                 fetch('http://localhost:5066/movie')
                     // get the JSON content from the response
@@ -276,7 +260,6 @@
                     // for display
                     .then(items => items.map(item => addBookingItemToDisplay(item)));
             }
-
 
 
 

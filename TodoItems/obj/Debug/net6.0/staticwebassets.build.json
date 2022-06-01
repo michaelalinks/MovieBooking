@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tqK/o/OD8ccYMrdB/YtbNsI3xw34CxzRxQDELWdHXqg=",
+  "Hash": "W987vc7zI44DI/MN2CaDyBO8JupOq1OFpjiPvARr80Y=",
   "Source": "TodoItems",
   "BasePath": "_content/TodoItems",
   "Mode": "Default",
@@ -68,12 +68,12 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\WebApp\\WebApi\\tutorial\\TodoItems\\TodoItems\\wwwroot\\movie.html",
+      "Identity": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\WebApp\\WebApi\\tutorial\\TodoItems\\TodoItems\\wwwroot\\test.html",
       "SourceId": "TodoItems",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\michaela.links\\OneDrive\\VelocITy Programme\\WebApp\\WebApi\\tutorial\\TodoItems\\TodoItems\\wwwroot\\",
       "BasePath": "_content/TodoItems",
-      "RelativePath": "movie.html",
+      "RelativePath": "test.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,7 +82,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\movie.html"
+      "OriginalItemSpec": "wwwroot\\test.html"
     }
   ]
 }
