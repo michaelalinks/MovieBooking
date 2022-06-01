@@ -25,8 +25,9 @@
   which will in turn send a REST API GET request to the microservice to read the todo_list
   from the DB
 ---------------------------------------------------------------------------------------->
+<body onload="readBookingDetailsItems()">
 <!--<body onload="readMovieItems()">-->
-<body onload="readTicketAvailabilityItems()">
+<!--<body onload="readTicketAvailabilityItems()">-->
 
 
         <!---------------------------------------------------------------------------------------
@@ -214,6 +215,13 @@
                         } else return response.json();
                     })
             }
+
+
+
+
+
+
+
 
 
             function readMovieItems() {
