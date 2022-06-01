@@ -16,6 +16,10 @@ builder.Services.AddScoped<ICrudRepository<TodoItem, int>, TodoRepository>();
 builder.Services.AddScoped<ICrudService<TodoItem, int>, TodoService>();
 builder.Services.AddScoped<ICrudRepository<BookingDetailsItem, int>, BookingDetailsRepository>();
 builder.Services.AddScoped<ICrudService<BookingDetailsItem, int>, BookingDetailsService>();
+builder.Services.AddScoped<ICrudRepository<MovieItem, int>, MovieRepository>();
+builder.Services.AddScoped<ICrudService<MovieItem, int>, MovieService>();
+builder.Services.AddScoped<ICrudRepository<TicketAvailabilityItem, int>, TicketAvailabilityRepository>();
+builder.Services.AddScoped<ICrudService<TicketAvailabilityItem, int>, TicketAvailabilityService>();
 
 builder.Services.AddCors(options =>
 {

@@ -25,195 +25,230 @@
   which will in turn send a REST API GET request to the microservice to read the todo_list
   from the DB
 ---------------------------------------------------------------------------------------->
-<body onload="readBookingDetailsItems()">
+<!--<body onload="readMovieItems()">-->
+<body onload="readTicketAvailabilityItems()">
 
-    <!---------------------------------------------------------------------------------------
+
+        <!---------------------------------------------------------------------------------------
       This is the Header
     ---------------------------------------------------------------------------------------->
-    <div class="header">
-        <h1>Create Booking</h1>
-        <hr />
-        <form action="javascript:addNewBookingItem()" style="margin-top: 10px">
-            <label for="firstName">First Name</label>
-            <input type="text" id="newFirstName" placeholder="Name...">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="newLastName" placeholder="Surname...">
-            <input type="submit" value="Add" class="addButton" />
-        </form>
-    </div>
+        <div class="header">
+            <h1>Create Booking</h1>
+            <hr />
+            <form action="javascript:addNewBookingItem()" style="margin-top: 10px">
+                <label for="firstName">First Name</label>
+                <input type="text" id="newFirstName" placeholder="Name...">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="newLastName" placeholder="Surname...">
+                <input type="submit" value="Add" class="addButton" />
+            </form>
+        </div>
 
-    <!---------------------------------------------------------------------------------------
+        <!---------------------------------------------------------------------------------------
       HTML element to hold the bookingList.  This is where all the TodoItems will be displayed
     ---------------------------------------------------------------------------------------->
-    <ul id="bookingList">
-        <!-- This list is empty at start and is populated by the readTodoItems() function
+        <ul id="bookingList">
+            <!-- This list is empty at start and is populated by the readTodoItems() function
              called by the onload trigger (see the body element above)
          -->
-    </ul>
+        </ul>
 
-    <!---------------------------------------------------------------------------------------
+        <!---------------------------------------------------------------------------------------
       Scripts
     ---------------------------------------------------------------------------------------->
-    <script>
-    /****************************************************************************
-     * Add a new TodoItem.
-     *
-     * 1) send an update to the DB
-     * 2) if successful then add the item to the list
-     ****************************************************************************/
-    function addNewBookingItem(newItemValue) {
+        <script>
+            /****************************************************************************
+             * Add a new TodoItem.
+             *
+             * 1) send an update to the DB
+             * 2) if successful then add the item to the list
+             ****************************************************************************/
+            function addNewBookingItem(newItemValue) {
 
-        // Get the value from the Input field in the FORM
-        let fnameValue = document.getElementById("newFirstName").value.trim();
-        let lnameValue = document.getElementById("newLastName").value.trim();
+                // Get the value from the Input field in the FORM
+                let fnameValue = document.getElementById("newFirstName").value.trim();
+                let lnameValue = document.getElementById("newLastName").value.trim();
 
-        // Check that a value have added
-        if (fnameValue === "") {
-            alert("Please enter a value for your item");
-        }
-        if (lnameValue === "") {
-            alert("Please enter a value for your item");
-        }
-        createBookingItem(fnameValue, lnameValue);
-        document.getElementById("newFirstName").value = "";
-        document.getElementById("newLastName").value = "";
-    }
-
-    /****************************************************************************
-     * This function will add the a new todo item to the UL element
-     * Specifically this will add:
-     *
-     *   <li>the item description<span class="close">X</>li>
-     *
-     * 1) add to DB
-     * 2) if successful then add the item to the list
-     *
-     ****************************************************************************/
-    function addBookingItemToDisplay(item) {
-        let bookingItemNode = document.createElement("li");
-        let fnameTextNode = document.createTextNode(item["fname"]);
-        bookingItemNode.appendChild(fnameTextNode);
-
-        document.getElementById("bookingList").appendChild(bookingItemNode);
-
-        let tickSpanNode = document.createElement("SPAN");
-        let tickText = document.createTextNode("\u2713");  // \u2713 is unicode for the tick symbol
-        tickSpanNode.appendChild(tickText);
-        bookingItemNode.appendChild(tickSpanNode);
-        tickSpanNode.className = "tickHidden";
-
-        let closeSpanNode = document.createElement("SPAN");
-        let closeText = document.createTextNode("X");
-        closeSpanNode.className = "close";
-        closeSpanNode.appendChild(closeText);
-        bookingItemNode.appendChild(closeSpanNode);
-
-        closeSpanNode.onclick = function (event) {
-            // When the use press the "X" button, the click event is normally also passed to its parent element.
-            // (i.e. the element containing the <SPAN>). In the case the LI element that is holding the TodoItem
-            // which would have resulted in a toggle of item between "DONE" and "NEW"
-            //
-            // stopPropagation() tells the event not to propagate
-            event.stopPropagation();
-
-            if (confirm("Are you sure that you want to delete " + item.fname + "?")) {
-                deleteBookingItem(item["id"]);
-
-                // Remove the HTML list element that is holding this todo item
-                bookingItemNode.remove();
+                // Check that a value have added
+                if (fnameValue === "") {
+                    alert("Please enter a value for your item");
+                }
+                if (lnameValue === "") {
+                    alert("Please enter a value for your item");
+                }
+                createBookingItem(fnameValue, lnameValue);
+                document.getElementById("newFirstName").value = "";
+                document.getElementById("newLastName").value = "";
             }
-        }
 
-        //bookingItemNode.onclick = function () {
-        //    if (item["status"] === "NEW") {
-        //        item["status"] = "DONE"
-        //    } else {
-        //        item["status"] = "NEW"
-        //    }
+            /****************************************************************************
+             * This function will add the a new todo item to the UL element
+             * Specifically this will add:
+             *
+             *   <li>the item description<span class="close">X</>li>
+             *
+             * 1) add to DB
+             * 2) if successful then add the item to the list
+             *
+             ****************************************************************************/
+            function addBookingItemToDisplay(item) {
+                let bookingItemNode = document.createElement("li");
+                let fnameTextNode = document.createTextNode(item["fname"]);
+                bookingItemNode.appendChild(fnameTextNode);
 
-        //    updateBookingItem(item);
+                document.getElementById("bookingList").appendChild(bookingItemNode);
 
-        //    bookingItemNode.classList.toggle("checked");
-        //    tickSpanNode.classList.toggle("tickVisible");
-        //}
+                let tickSpanNode = document.createElement("SPAN");
+                let tickText = document.createTextNode("\u2713");  // \u2713 is unicode for the tick symbol
+                tickSpanNode.appendChild(tickText);
+                bookingItemNode.appendChild(tickSpanNode);
+                tickSpanNode.className = "tickHidden";
 
-        //if (item["status"] !== "NEW") {
-        //    bookingItemNode.classList.toggle("checked");
-        //    tickSpanNode.classList.toggle("tickVisible");
-        //}
-    }
+                let closeSpanNode = document.createElement("SPAN");
+                let closeText = document.createTextNode("X");
+                closeSpanNode.className = "close";
+                closeSpanNode.appendChild(closeText);
+                bookingItemNode.appendChild(closeSpanNode);
 
-    /****************************************************************************
-     * CRUD functions calling the REST API
-     ****************************************************************************/
+                closeSpanNode.onclick = function (event) {
+                    // When the use press the "X" button, the click event is normally also passed to its parent element.
+                    // (i.e. the element containing the <SPAN>). In the case the LI element that is holding the TodoItem
+                    // which would have resulted in a toggle of item between "DONE" and "NEW"
+                    //
+                    // stopPropagation() tells the event not to propagate
+                    event.stopPropagation();
 
-    function createBookingItem(bookingItemDescription, bookingItemLName) {
+                    if (confirm("Are you sure that you want to delete " + item.fname + "?")) {
+                        deleteBookingItem(item["id"]);
 
-        // Create a new JSON object for the new item with the status of NEW
-        // Since the id is generated by the microservice, we will use -1 as a dummy
-        // If the POST is successful the microservice will store the new item in the database
-        // and returns a JSON via the response with the generated id for the new item
-        const newItem = { "fname": bookingItemDescription, "lname": bookingItemLName};
-        const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newItem)
-        };
-        fetch('http://localhost:5066/bookingdetails', requestOptions)
-            // get the JSON content from the response
-            .then((response) => {
-                if (!response.ok) {
-                    alert("An error has occurred.  Unable to add name")
-                    throw response.status;
-                } else return response.json();
-            })
+                        // Remove the HTML list element that is holding this todo item
+                        bookingItemNode.remove();
+                    }
+                }
 
-            // add the item to the UL element so that it will appear in the browser
-            .then(item => addBookingItemToDisplay(item));
-    }
+                //bookingItemNode.onclick = function () {
+                //    if (item["status"] === "NEW") {
+                //        item["status"] = "DONE"
+                //    } else {
+                //        item["status"] = "NEW"
+                //    }
 
-    // Load the list - expecting an array of todo_items to be returned
-    function readBookingDetailsItems() {
-        fetch('http://localhost:5066/bookingdetails')
-            // get the JSON content from the response
-            .then((response) => {
-                if (!response.ok) {
-                    alert("An error has occurred.  Unable to read your name input")
-                    throw response.status;
-                } else return response.json();
-            })
-            // Add the items to the UL element so that it can be seen
-            // As items is an array, we will the array.map function to through the array and add item to the UL element
-            // for display
-            .then(items => items.map(item => addBookingItemToDisplay(item)));
-    }
+                //    updateBookingItem(item);
 
-    function updateBookingItem(item) {
-        const requestOptions = {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(item)
-        };
-        fetch('http://localhost:5066/bookingdetails/' + item.id, requestOptions)
-            .then((response) => {
-                if (!response.ok) {
-                    alert("An error has occurred.  Unable to UPDATE the TODO item")
-                    throw response.status;
-                } else return response.json();
-            })
-    }
+                //    bookingItemNode.classList.toggle("checked");
+                //    tickSpanNode.classList.toggle("tickVisible");
+                //}
 
-    function deleteBookingItem(bookingItemId) {
-        fetch("http://localhost:5066/bookingdetails/" + bookingItemId, {method: 'DELETE'})
-            .then((response) => {
-                if (!response.ok) {
-                    alert("An error has occurred.  Unable to DELETE the name")
-                    throw response.status;
-                } else return response.json();
-            })
-    }
-    </script>
-</body>
+                //if (item["status"] !== "NEW") {
+                //    bookingItemNode.classList.toggle("checked");
+                //    tickSpanNode.classList.toggle("tickVisible");
+                //}
+            }
+
+            /****************************************************************************
+             * CRUD functions calling the REST API
+             ****************************************************************************/
+
+            function createBookingItem(bookingItemDescription, bookingItemLName) {
+
+                // Create a new JSON object for the new item with the status of NEW
+                // Since the id is generated by the microservice, we will use -1 as a dummy
+                // If the POST is successful the microservice will store the new item in the database
+                // and returns a JSON via the response with the generated id for the new item
+                const newItem = { "fname": bookingItemDescription, "lname": bookingItemLName };
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newItem)
+                };
+                fetch('http://localhost:5066/bookingdetails', requestOptions)
+                    // get the JSON content from the response
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to add name")
+                            throw response.status;
+                        } else return response.json();
+                    })
+
+                    // add the item to the UL element so that it will appear in the browser
+                    .then(item => addBookingItemToDisplay(item));
+            }
+
+            // Load the list - expecting an array of todo_items to be returned
+            function readBookingDetailsItems() {
+                fetch('http://localhost:5066/bookingdetails')
+                    // get the JSON content from the response
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to read your name input")
+                            throw response.status;
+                        } else return response.json();
+                    })
+                    // Add the items to the UL element so that it can be seen
+                    // As items is an array, we will the array.map function to through the array and add item to the UL element
+                    // for display
+                    .then(items => items.map(item => addBookingItemToDisplay(item)));
+            }
+
+            function updateBookingItem(item) {
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(item)
+                };
+                fetch('http://localhost:5066/bookingdetails/' + item.id, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to UPDATE the TODO item")
+                            throw response.status;
+                        } else return response.json();
+                    })
+            }
+
+            function deleteBookingItem(bookingItemId) {
+                fetch("http://localhost:5066/bookingdetails/" + bookingItemId, { method: 'DELETE' })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to DELETE the name")
+                            throw response.status;
+                        } else return response.json();
+                    })
+            }
+
+
+            function readMovieItems() {
+                fetch('http://localhost:5066/movie')
+                    // get the JSON content from the response
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to read your name input")
+                            throw response.status;
+                        } else return response.json();
+                    })
+                    // Add the items to the UL element so that it can be seen
+                    // As items is an array, we will the array.map function to through the array and add item to the UL element
+                    // for display
+                    .then(items => items.map(item => addBookingItemToDisplay(item)));
+            }
+
+            function readTicketAvailabilityItems() {
+                fetch('http://localhost:5066/ticketavailability')
+                    // get the JSON content from the response
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("An error has occurred.  Unable to read your name input")
+                            throw response.status;
+                        } else return response.json();
+                    })
+                    // Add the items to the UL element so that it can be seen
+                    // As items is an array, we will the array.map function to through the array and add item to the UL element
+                    // for display
+                    .then(items => items.map(item => addBookingItemToDisplay(item)));
+            }
+
+
+        </script>
+    </body>
     </div>
 
 
